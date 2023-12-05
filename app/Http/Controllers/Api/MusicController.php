@@ -14,7 +14,7 @@ class MusicController extends Controller
      */
     public function index()
     {
-        return MusicResource::collection(Music::all());
+        return MusicResource::collection(Music::paginate(10));
     }
 
 
