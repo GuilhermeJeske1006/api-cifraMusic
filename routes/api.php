@@ -21,3 +21,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 
 Route::post('/music/store', [MusicController::class, 'store'])->name('music.store');
+Route::get('/music', [MusicController::class, 'index'])->name('music.index');
