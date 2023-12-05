@@ -15,6 +15,7 @@ class CreateUser extends Notification implements ShouldQueue
     /**
      * Create a new notification instance.
      */
+    /** @var User */
     public $user;
 
     public function __construct(User $user)

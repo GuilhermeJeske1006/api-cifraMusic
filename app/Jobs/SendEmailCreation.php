@@ -19,6 +19,8 @@ class SendEmailCreation implements ShouldQueue
     /**
      * Create a new job instance.
      */
+
+     /** @var User */
     public $user;
 
     public function __construct(User $user)

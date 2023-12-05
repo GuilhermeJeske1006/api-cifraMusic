@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\MusicResource;
 use App\Models\Music;
 use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Http\Resources\Json\ResourceResponse;
 use Illuminate\Validation\Rules\Exists;
 
 class MusicController extends Controller
@@ -13,7 +15,7 @@ class MusicController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index() : JsonResource
     {
         return MusicResource::collection(Music::paginate(10));
     }
@@ -22,7 +24,7 @@ class MusicController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store()
+    public function store() : JsonResource
     {
         request()->validate([
             'title' => 'required',
@@ -45,7 +47,7 @@ class MusicController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Music $music)
+    public function show(Music $music) : JsonResource
     {
         return MusicResource::make($music);
     }
@@ -55,7 +57,7 @@ class MusicController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Music $music)
+    public function update(Music $music) : JsonResource
     {    
         request()->validate([
             'title' => 'required',
@@ -78,7 +80,7 @@ class MusicController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Music $music)
+    public function destroy(Music $music) : JsonResource
     {
         $music->deleteOrFail();
 
