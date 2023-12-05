@@ -30,6 +30,11 @@ class MusicController extends Controller
      */
     public function store()
     {
+        request()->validate([
+            'title' => 'required',
+            'lyrics' => 'required'
+        ]);
+        
         $music = user()->musics()
             ->create([
                 'title' => request()->title,
