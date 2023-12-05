@@ -60,9 +60,24 @@ class MusicController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Music $music)
-    {
-        //
+    public function update(Music $music)
+    {    
+        request()->validate([
+            'title' => 'required',
+            'lyrics' => 'required'
+        ]);
+        
+        $music->title       = request()->title;
+        $music->singer_id   = request()->singer_id;
+        $music->note_id     = request()->note_id;
+        $music->bpm         = request()->bpm;
+        $music->rhythm_id   = request()->rhythm_id;
+        $music->lyrics      = request()->lyrics;
+        $music->created_by  = request()->created_by;
+
+        $music->save();
+
+        return new MusicResource($music);
     }
 
     /**
