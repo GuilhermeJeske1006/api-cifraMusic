@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\MusicResource;
 use App\Models\Music;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Exists;
 
 class MusicController extends Controller
 {
@@ -14,16 +15,9 @@ class MusicController extends Controller
      */
     public function index()
     {
-        //
+        return MusicResource::collection(Music::paginate(10));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -53,23 +47,32 @@ class MusicController extends Controller
      */
     public function show(Music $music)
     {
-        //
+        return MusicResource::make($music);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Music $music)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Music $music)
-    {
-        //
+    public function update(Music $music)
+    {    
+        request()->validate([
+            'title' => 'required',
+            'lyrics' => 'required'
+        ]);
+        
+        $music->title       = request()->title;
+        $music->singer_id   = request()->singer_id;
+        $music->note_id     = request()->note_id;
+        $music->bpm         = request()->bpm;
+        $music->rhythm_id   = request()->rhythm_id;
+        $music->lyrics      = request()->lyrics;
+        $music->created_by  = request()->created_by;
+
+        $music->save();
+
+        return MusicResource::make($music);
     }
 
     /**
@@ -77,6 +80,8 @@ class MusicController extends Controller
      */
     public function destroy(Music $music)
     {
-        //
+        $music->deleteOrFail();
+
+        return MusicResource::make($music);
     }
 }
