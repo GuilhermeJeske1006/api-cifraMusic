@@ -16,11 +16,11 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->integer('bpm')->nullable();
-            $table->unsignedBigInteger('singer_id'); 
-            $table->unsignedBigInteger('note_id'); 
-            $table->unsignedBigInteger('rhythm_id'); 
+            $table->unsignedBigInteger('singer_id')->nullable();
+            $table->unsignedBigInteger('note_id')->nullable();
+            $table->unsignedBigInteger('rhythm_id')->nullable();
             $table->longText('lyrics');
-            $table->foreignIdFor(User::class, 'created_by');
+            $table->foreignIdFor(User::class, 'created_by')->nullable();
             $table->timestamps();
 
             $table->foreign('singer_id')->references('id')->on('singers')->onDelete("cascade");
