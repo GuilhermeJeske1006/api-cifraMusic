@@ -22,7 +22,8 @@ class MusicFactory extends Factory
             'note_id' => fake()->numberBetween(1, 25),
             'bpm' => fake()->randomNumber(2),
             'rhythm_id' => fake()->numberBetween(1, 10),
-            'lyrics' => fake()->randomHtml()
+            'lyrics' => fake()->randomHtml(),
+            'created_by' => fake()->numberBetween(1, 10),
         ];
     }
 }

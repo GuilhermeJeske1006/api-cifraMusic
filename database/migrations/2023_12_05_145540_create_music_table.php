@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -19,6 +20,7 @@ return new class extends Migration
             $table->unsignedBigInteger('note_id'); 
             $table->unsignedBigInteger('rhythm_id'); 
             $table->longText('lyrics');
+            $table->foreignIdFor(User::class, 'created_by');
             $table->timestamps();
 
             $table->foreign('singer_id')->references('id')->on('singers')->onDelete("cascade");

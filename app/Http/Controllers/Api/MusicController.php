@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
+use App\Http\Resources\MusicResource;
 use App\Models\Music;
 use Illuminate\Http\Request;
 
@@ -26,11 +28,21 @@ class MusicController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $music = user()->musics()
+            ->create([
+                'title' => request()->title,
+                'singer_id' => request()->singer_id,
+                'note_id' => request()->note_id,
+                'bpm' => request()->bpm,
+                'rhythm_id' => request()->rhythm_id,
+                'lyrics' => request()->lyrics,
+                'created_by' => request()->created_by,
+            ]);
+    
+        return MusicResource::make($music);
     }
-
     /**
      * Display the specified resource.
      */
