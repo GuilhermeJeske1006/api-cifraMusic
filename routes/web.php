@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\Facebook\CallbackController;
+use App\Http\Controllers\Auth\Facebook\RedirectController;
+use App\Http\Controllers\Auth\Google\CallbackController as GoogleCallbackController;
+use App\Http\Controllers\Auth\Google\RedirectController as GoogleRedirectController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +25,12 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/facebook/login', RedirectController::class)->name('facebook.login');
+Route::get('/facebook/callback', CallbackController::class)->name('facebook.callback');
+
+Route::get('/google/login', GoogleRedirectController::class)->name('google.login');
+Route::get('/google/callback', GoogleCallbackController::class)->name('google.callback');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
