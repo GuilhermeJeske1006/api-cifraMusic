@@ -46,7 +46,7 @@ class MusicController extends Controller
      */
     public function show(Music $music)
     {
-        //
+        return MusicResource::make($music);
     }
 
     /**

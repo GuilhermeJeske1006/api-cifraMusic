@@ -45,10 +45,9 @@ it('should paginate the result', function () {
 
     // Assert
     $response->assertSuccessful()
-             ->assertJsonStructure([
-                 'data',
-                 'links',
-                 'meta',
-             ])
-             ->assertJsonCount(10, 'data'); // Adjust the count based on your pagination setup
+        ->assertJsonStructure([
+            'data',
+            'links',
+            'meta',
+        ])->assertJsonCount(10, 'data'); 
 });
