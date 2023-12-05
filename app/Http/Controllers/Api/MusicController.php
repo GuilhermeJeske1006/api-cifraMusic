@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\MusicResource;
 use App\Models\Music;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\Exists;
 
 class MusicController extends Controller
 {
@@ -49,13 +50,7 @@ class MusicController extends Controller
         return MusicResource::make($music);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Music $music)
-    {
-        //
-    }
+
 
     /**
      * Update the specified resource in storage.
@@ -77,7 +72,7 @@ class MusicController extends Controller
 
         $music->save();
 
-        return new MusicResource($music);
+        return MusicResource::make($music);
     }
 
     /**
@@ -85,6 +80,8 @@ class MusicController extends Controller
      */
     public function destroy(Music $music)
     {
-        //
+        $music->deleteOrFail();
+
+        return MusicResource::make($music);
     }
 }

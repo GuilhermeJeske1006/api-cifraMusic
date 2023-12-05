@@ -24,3 +24,4 @@ Route::post('/music/store', [MusicController::class, 'store'])->name('music.stor
 Route::get('/music', [MusicController::class, 'index'])->name('music.index');
 Route::get('/music/{music}', [MusicController::class, 'show'])->name('music.show');
 Route::put('/music/{music}/update', [MusicController::class, 'update'])->name('music.update');
+Route::delete('/music/{music}/destroy', [MusicController::class, 'destroy'])->name('music.destroy');
