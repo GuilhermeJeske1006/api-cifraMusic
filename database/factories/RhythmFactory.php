@@ -17,7 +17,7 @@ class RhythmFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_rhythm' => fake()->title()
+            'name_rhythm' => fake()->title(),
         ];
     }
 }

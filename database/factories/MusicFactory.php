@@ -17,12 +17,12 @@ class MusicFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->title(),
-            'singer_id' => fake()->numberBetween(1, 10),
-            'note_id' => fake()->numberBetween(1, 25),
-            'bpm' => fake()->randomNumber(2),
-            'rhythm_id' => fake()->numberBetween(1, 10),
-            'lyrics' => fake()->randomHtml(),
+            'title'      => fake()->title(),
+            'singer_id'  => fake()->numberBetween(1, 10),
+            'note_id'    => fake()->numberBetween(1, 25),
+            'bpm'        => fake()->randomNumber(2),
+            'rhythm_id'  => fake()->numberBetween(1, 10),
+            'lyrics'     => fake()->randomHtml(),
             'created_by' => fake()->numberBetween(1, 10),
         ];
     }

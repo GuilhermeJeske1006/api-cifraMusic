@@ -1,21 +1,15 @@
 <?php
 
-use App\Models\Music;
-use App\Models\Rhythm;
-use App\Models\Singer;
-use App\Models\User;
+use App\Models\{Music, Rhythm, Singer, User};
 
-use function Pest\Laravel\actingAs;
-use function Pest\Laravel\assertDatabaseHas;
-use function Pest\Laravel\put;
-use function Pest\Laravel\putJson;
+use function Pest\Laravel\{actingAs, assertDatabaseHas, put, putJson};
 
 it('should be able to update a music', function () {
     // Arrange
     $user = User::factory()->create();
     Rhythm::factory(10)->create();
     Singer::factory(10)->create();
-    $music = Music::factory()->create(); 
+    $music = Music::factory()->create();
 
     actingAs($user);
 
@@ -74,4 +68,3 @@ test('when updating the music, the title and lyrics are required', function () {
         'created_by' => $music->created_by,
     ])->assertJsonValidationErrors(['title', 'lyrics']);
 });
-

@@ -15,5 +15,4 @@ class UserObserver
         SendEmailCreation::dispatch($user);
     }
 
-
 }

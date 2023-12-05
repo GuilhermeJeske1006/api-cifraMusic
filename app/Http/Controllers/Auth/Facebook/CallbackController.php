@@ -14,7 +14,7 @@ class CallbackController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke() : RedirectResponse
+    public function __invoke(): RedirectResponse
     {
         $facebookUser = Socialite::driver('facebook')->user();
 

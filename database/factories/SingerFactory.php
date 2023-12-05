@@ -17,7 +17,7 @@ class SingerFactory extends Factory
     public function definition(): array
     {
         return [
-            'name_singer' => fake()->name()
+            'name_singer' => fake()->name(),
         ];
     }
 }

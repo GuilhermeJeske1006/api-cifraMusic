@@ -38,8 +38,8 @@ class CreateUser extends Notification implements ShouldQueue
      */
     public function toMail(object $notifiable): MailMessage
     {
-        return (new MailMessage)
-                    ->line('Olá '. $this->user->name .' Seja muito bem vindo ao sistema.');
+        return (new MailMessage())
+                    ->line('Olá ' . $this->user->name . ' Seja muito bem vindo ao sistema.');
     }
 
     /**

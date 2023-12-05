@@ -1,9 +1,7 @@
 <?php
 
-use App\Http\Controllers\Auth\Facebook\CallbackController;
-use App\Http\Controllers\Auth\Facebook\RedirectController;
-use App\Http\Controllers\Auth\Google\CallbackController as GoogleCallbackController;
-use App\Http\Controllers\Auth\Google\RedirectController as GoogleRedirectController;
+use App\Http\Controllers\Auth\Facebook\{CallbackController, RedirectController};
+use App\Http\Controllers\Auth\Google\{CallbackController as GoogleCallbackController, RedirectController as GoogleRedirectController};
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
