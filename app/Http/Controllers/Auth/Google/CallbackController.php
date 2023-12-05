@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Auth\Facebook;
+namespace App\Http\Controllers\Auth\Google;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
-use Illuminate\Http\{RedirectResponse, Request};
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
+use Illuminate\Support\Str;
 
 class CallbackController extends Controller
 {
@@ -16,12 +17,12 @@ class CallbackController extends Controller
      */
     public function __invoke() : RedirectResponse
     {
-        $facebookUser = Socialite::driver('facebook')->user();
+        $googleUser = Socialite::driver('google')->user();
 
         $user = User::query()
             ->updateOrCreate(
-                ['nickname' => $facebookUser->getNickname(), 'email' => $facebookUser->getEmail()],
-                ['name' => $facebookUser->getName(), 'password' => Str::random(40), 'email_verified_at' => now()]
+                ['nickname' => $googleUser->getNickname(), 'email' => $googleUser->getEmail()],
+                ['name' => $googleUser->getName(), 'password' => Str::random(40), 'email_verified_at' => now()]
             );
 
         Auth::login($user);

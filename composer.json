@@ -11,7 +11,8 @@
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
-        "socialiteproviders/facebook": "^4.1"
+        "socialiteproviders/facebook": "^4.1",
+        "socialiteproviders/google": "^4.1"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.9",
