@@ -13,9 +13,10 @@ class SingerController extends Controller
 {
     public function index(): JsonResource
     {
-        return SingerResource::collection([
-            Singer::all(),
-        ]);
+        return SingerResource::collection(
+            Singer::with('musics')
+                ->paginate(10)
+        );
     }
 
     public function store(Singer $singer): JsonResource

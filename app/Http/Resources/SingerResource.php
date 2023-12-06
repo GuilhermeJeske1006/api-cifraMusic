@@ -14,6 +14,10 @@ class SingerResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+        return [
+            'id'          => $request->id,
+            'name_singer' => $request->name_singer,
+            'musics'      => MusicResource::collection($this->whenLoaded('musics')),
+        ];
     }
 }
