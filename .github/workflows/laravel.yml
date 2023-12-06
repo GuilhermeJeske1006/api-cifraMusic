@@ -14,6 +14,8 @@ jobs:
       with:
         php-version: '8.1'
     - uses: actions/checkout@v3
+    - name: Update Composer Dependencies
+      run: composer update --lock
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
@@ -44,3 +46,6 @@ jobs:
       
     - name: Execute Laravel Pint
       run: vendor/bin/pint --test
+
+    - name: Debug
+      run: echo "Debug information" && env
