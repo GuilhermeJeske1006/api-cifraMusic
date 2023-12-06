@@ -12,6 +12,10 @@ class Music extends Model
 
     protected $guarded = [];
 
+    protected $casts = [
+        'is_highlighted' => 'boolean',
+    ];
+
     public function createdBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'created_by');

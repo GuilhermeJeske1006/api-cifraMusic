@@ -20,7 +20,6 @@ it('should list all the music', function () {
     $response->assertStatus(200);
 
     /** @var Music $q */
-
     foreach ($musics as $q) {
         $response->assertSee($q->music);
     }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Music\HighlightController;
 use App\Http\Controllers\Api\MusicController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::get('/music/highlight', HighlightController::class)->name('music.highlight');
 Route::post('/music/store', [MusicController::class, 'store'])->name('music.store');
 Route::get('/music', [MusicController::class, 'index'])->name('music.index');
 Route::get('/music/{music}', [MusicController::class, 'show'])->name('music.show');

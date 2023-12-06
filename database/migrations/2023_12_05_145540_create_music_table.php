@@ -18,6 +18,7 @@ return new class () extends Migration {
             $table->unsignedBigInteger('singer_id')->nullable();
             $table->unsignedBigInteger('note_id')->nullable();
             $table->unsignedBigInteger('rhythm_id')->nullable();
+            $table->boolean('is_highlighted')->default(false);
             $table->longText('lyrics');
             $table->foreignIdFor(User::class, 'created_by')->nullable();
             $table->timestamps();
