@@ -18,20 +18,20 @@ class SearchSingerController extends Controller
         $crawler = $client
                 ->request('GET', env('WEB_SCRIPING_URL') . '/' . $name_singer);
 
-        $list = $crawler->filter('.song-verified--inline')
+        $listSongs = $crawler->filter('.song-verified--inline')
                 ->each(function ($node) {
                     return $node->text();
                 });
 
-        $prefixedList = array_map(function ($item, $index) {
+        $prefixedlistSongs = array_map(function ($item, $index) {
             return [
                 'id'   => $index + 1,
                 'name' => $item,
             ];
-        }, $list, array_keys($list));
+        }, $listSongs, array_keys($listSongs));
 
         return response()->json([
-            'data' => $prefixedList,
+            'data' => $prefixedlistSongs,
         ], 200);
     }
 }

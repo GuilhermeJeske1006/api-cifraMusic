@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Music\HighlightController;
-use App\Http\Controllers\Api\WebScraping\{SearchController, SearchSingerController};
+use App\Http\Controllers\Api\WebScraping\{SearchController, SearchMusicController, SearchSingerController};
 use App\Http\Controllers\Api\{MusicController, SingerController};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -35,3 +35,4 @@ Route::put('/singer/{singer}/update', [SingerController::class, 'update'])->name
 Route::delete('/singer/{singer}/destroy', [SingerController::class, 'destroy'])->name('singer.destroy');
 
 Route::get('/webscriping/singer/search', SearchSingerController::class)->name('webscriping.singer');
+Route::get('/webscriping/music/search', SearchMusicController::class)->name('webscriping.music');
