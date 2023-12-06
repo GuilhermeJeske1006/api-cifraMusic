@@ -14,8 +14,8 @@ jobs:
       with:
         php-version: '8.1'
     - uses: actions/checkout@v3
-    - name: Update Composer Dependencies
-      run: composer update --lock
+    - name: Debug Environment
+      run: php -v && composer show laravel/framework && composer show symfony/event-dispatcher
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
