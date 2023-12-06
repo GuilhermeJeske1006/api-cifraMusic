@@ -19,7 +19,7 @@ class SingerController extends Controller
         );
     }
 
-    public function store(Singer $singer): JsonResource
+    public function store(Singer $singer): JsonResponse
     {
         request()->validate([
             'name_singer' => 'required',
@@ -29,7 +29,10 @@ class SingerController extends Controller
             'name_singer' => request()->name_singer,
         ]);
 
-        return SingerResource::make($singer);
+        return response()->json([
+            'message' => 'Artista criado com sucesso',
+            'data'    => $singer,
+        ], 201);
     }
 
     public function show(Singer $singer): JsonResource
@@ -39,13 +42,16 @@ class SingerController extends Controller
         );
     }
 
-    public function update(Singer $singer): JsonResource
+    public function update(Singer $singer): JsonResponse
     {
         $singer->updated([
             'name_singer' => request()->name_singer,
         ]);
 
-        return SingerResource::make($singer);
+        return response()->json([
+            'message' => 'Artista atualizado com sucesso',
+            'data'    => $singer,
+        ], 200);
     }
 
     public function destroy(Singer $singer): JsonResponse
