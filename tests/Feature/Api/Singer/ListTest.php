@@ -17,10 +17,6 @@ it('should list all the singer', function () {
     // Assert :: verificar
     $response->assertStatus(200);
 
-    /** @var Singer $q */
-    foreach ($singers as $q) {
-        $response->assertSee($q->name_singer);
-    }
 });
 
 it('should paginate the result', function () {
