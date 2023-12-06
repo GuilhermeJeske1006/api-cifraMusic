@@ -11,9 +11,13 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 class SingerController extends Controller
 {
-    /**
-     * Store a newly created resource in storage.
-     */
+    public function index(): JsonResource
+    {
+        return SingerResource::collection([
+            Singer::all(),
+        ]);
+    }
+
     public function store(Singer $singer): JsonResource
     {
         request()->validate([

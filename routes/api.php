@@ -28,3 +28,4 @@ Route::put('/music/{music}/update', [MusicController::class, 'update'])->name('m
 Route::delete('/music/{music}/destroy', [MusicController::class, 'destroy'])->name('music.destroy');
 
 Route::post('/singer/store', [SingerController::class, 'store'])->name('singer.store');
+Route::get('/singer', [SingerController::class, 'index'])->name('singer.index');
