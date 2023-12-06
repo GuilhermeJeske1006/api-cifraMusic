@@ -9,7 +9,7 @@ it('should be able to update a music', function () {
     $user = User::factory()->create();
     Rhythm::factory(10)->create();
     Singer::factory(10)->create();
-    $music = Music::factory()->create();
+    $music = Music::factory()->create()->first();
 
     actingAs($user);
 

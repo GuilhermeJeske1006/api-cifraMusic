@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Music\HighlightController;
+use App\Http\Controllers\Api\WebScraping\{SearchController, SearchSingerController};
 use App\Http\Controllers\Api\{MusicController, SingerController};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -32,3 +33,5 @@ Route::get('/singer', [SingerController::class, 'index'])->name('singer.index');
 Route::get('/singer/{singer}', [SingerController::class, 'show'])->name('singer.show');
 Route::put('/singer/{singer}/update', [SingerController::class, 'update'])->name('singer.update');
 Route::delete('/singer/{singer}/destroy', [SingerController::class, 'destroy'])->name('singer.destroy');
+
+Route::get('/webscriping/singer/search', SearchSingerController::class)->name('webscriping.singer');
