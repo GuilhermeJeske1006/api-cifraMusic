@@ -16,6 +16,10 @@ class SingerController extends Controller
      */
     public function store(Singer $singer): JsonResource
     {
+        request()->validate([
+            'name_singer' => 'required',
+        ]);
+
         $singer->created([
             'name_singer' => request()->name_singer,
         ]);
