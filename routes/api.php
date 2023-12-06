@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\Music\HighlightController;
-use App\Http\Controllers\Api\WebScraping\{SearchController, SearchMusicController, SearchSingerController};
+use App\Http\Controllers\Api\WebScraping\{SearchMusicController, SearchSingerController};
 use App\Http\Controllers\Api\{MusicController, SingerController};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
