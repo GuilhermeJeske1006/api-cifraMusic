@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\MusicResource;
 use App\Models\Music;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Resources\Json\{JsonResource, ResourceResponse};
 
 class MusicController extends Controller
@@ -20,7 +21,7 @@ class MusicController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(): JsonResource
+    public function store(): JsonResponse
     {
         request()->validate([
             'title'  => 'required',
@@ -38,7 +39,10 @@ class MusicController extends Controller
                 'created_by' => request()->created_by,
             ]);
 
-        return MusicResource::make($music);
+        return response()->json([
+            'message' => 'Musica criada com sucesso',
+            'data'    => $music,
+        ], 201);
     }
     /**
      * Display the specified resource.
@@ -51,33 +55,31 @@ class MusicController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Music $music): JsonResource
+    public function update(Music $music): JsonResponse
     {
         request()->validate([
             'title'  => 'required',
             'lyrics' => 'required',
         ]);
 
-        $music->title      = request()->title;
-        $music->singer_id  = request()->singer_id;
-        $music->note_id    = request()->note_id;
-        $music->bpm        = request()->bpm;
-        $music->rhythm_id  = request()->rhythm_id;
-        $music->lyrics     = request()->lyrics;
-        $music->created_by = request()->created_by;
+        $music->updated(
+            request()->all()
+        );
 
-        $music->save();
-
-        return MusicResource::make($music);
+        return response()->json([
+            'message' => 'Musica atualizada com sucesso',
+            'data'    => $music,
+        ], 200);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Music $music): JsonResource
+    public function destroy(Music $music): JsonResponse
     {
         $music->deleteOrFail();
 
-        return MusicResource::make($music);
+        return response()->json(['Musica excluida com sucesso'], 200);
+
     }
 }

@@ -20,4 +20,9 @@ class Music extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
+
+    public function singer(): BelongsTo
+    {
+        return $this->belongsTo(Singer::class);
+    }
 }
