@@ -38,4 +38,13 @@ class SingerController extends Controller
             $singer->load('musics')
         );
     }
+
+    public function update(Singer $singer): JsonResource
+    {
+        $singer->updated([
+            'name_singer' => request()->name_singer,
+        ]);
+
+        return SingerResource::make($singer);
+    }
 }
