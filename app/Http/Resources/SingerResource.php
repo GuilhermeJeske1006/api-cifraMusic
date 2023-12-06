@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class SingerResource extends JsonResource
@@ -12,11 +11,11 @@ class SingerResource extends JsonResource
      *
      * @return array<string, mixed>
      */
-    public function toArray(Request $request): array
+    public function toArray($request): array
     {
         return [
-            'id'          => $request->id,
-            'name_singer' => $request->name_singer,
+            'id'          => $this->resource->id,
+            'name_singer' => $this->resource->name_singer,
             'musics'      => MusicResource::collection($this->whenLoaded('musics')),
         ];
     }

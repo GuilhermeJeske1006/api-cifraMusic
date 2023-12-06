@@ -31,4 +31,11 @@ class SingerController extends Controller
 
         return SingerResource::make($singer);
     }
+
+    public function show(Singer $singer): JsonResource
+    {
+        return SingerResource::make(
+            $singer->load('musics')
+        );
+    }
 }
