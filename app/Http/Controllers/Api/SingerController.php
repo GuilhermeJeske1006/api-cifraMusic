@@ -47,4 +47,11 @@ class SingerController extends Controller
 
         return SingerResource::make($singer);
     }
+
+    public function destroy(Singer $singer): JsonResponse
+    {
+        $singer->deleteOrFail();
+
+        return response()->json(['Artista excluido com sucesso'], 200);
+    }
 }

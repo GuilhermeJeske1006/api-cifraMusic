@@ -31,3 +31,4 @@ Route::post('/singer/store', [SingerController::class, 'store'])->name('singer.s
 Route::get('/singer', [SingerController::class, 'index'])->name('singer.index');
 Route::get('/singer/{singer}', [SingerController::class, 'show'])->name('singer.show');
 Route::put('/singer/{singer}/update', [SingerController::class, 'update'])->name('singer.update');
+Route::delete('/singer/{singer}/destroy', [SingerController::class, 'destroy'])->name('singer.destroy');
