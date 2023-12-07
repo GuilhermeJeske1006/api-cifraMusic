@@ -33,6 +33,10 @@ class RhythmController extends Controller
 
     public function update(Rhythm $rhythm): JsonResponse
     {
+        request()->validate([
+            'name_rhythm' => 'required',
+        ]);
+
         $rhythm->updateOrFail([
             'name_rhythm' => request()->name_rhythm,
         ]);

@@ -25,20 +25,20 @@ it('should be able to update a rhythm', function () {
     ]);
 });
 
-// test('when updating the rhythm, the name_rhythm are required', function () {
-//     // Arrange
-//     $user = User::factory()->create();
-//     $rhythm = rhythm::factory()->create();
+test('when updating the rhythm, the name_rhythm are required', function () {
+    // Arrange
+    $user   = User::factory()->create();
+    $rhythm = rhythm::factory()->create();
 
-//     actingAs($user);
+    actingAs($user);
 
-//     // Act - Valid update
-//     putJson(route('rhythm.update', ['rhythm' => $rhythm]), [
-//         'name_rhythm' => $rhythm->name_rhythm,
-//     ])->assertSuccessful();
+    // Act - Valid update
+    putJson(route('rhythm.update', ['rhythm' => $rhythm]), [
+        'name_rhythm' => $rhythm->name_rhythm,
+    ])->assertSuccessful();
 
-//     // Act - Invalid update
-//     putJson(route('rhythm.update', ['rhythm' => $rhythm]), [
-//         'name_rhythm' => null
-//     ])->assertJsonValidationErrors(['name_rhythm']);
-// });
+    // Act - Invalid update
+    putJson(route('rhythm.update', ['rhythm' => $rhythm]), [
+        'name_rhythm' => null,
+    ])->assertJsonValidationErrors(['name_rhythm']);
+});
