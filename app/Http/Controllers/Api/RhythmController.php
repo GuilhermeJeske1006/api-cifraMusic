@@ -31,4 +31,16 @@ class RhythmController extends Controller
         ], 201);
     }
 
+    public function update(Rhythm $rhythm): JsonResponse
+    {
+        $rhythm->updateOrFail([
+            'name_rhythm' => request()->name_rhythm,
+        ]);
+
+        return response()->json([
+            'message' => 'Ritmo atualizado com sucesso',
+            'data'    => $rhythm,
+        ], 200);
+    }
+
 }

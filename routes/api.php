@@ -41,5 +41,6 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/rhythm/store', [RhythmController::class, 'store'])->name('rhythm.store');
     Route::get('/rhythm', [RhythmController::class, 'index'])->name('rhythm.index');
+    Route::put('/rhythm/{rhythm}/update', [RhythmController::class, 'update'])->name('rhythm.update');
 
 });
