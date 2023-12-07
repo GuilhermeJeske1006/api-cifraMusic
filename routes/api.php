@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\Api\Music\HighlightController;
 use App\Http\Controllers\Api\WebScraping\{SearchMusicController, SearchSingerController};
-use App\Http\Controllers\Api\{MusicController, SingerController};
+use App\Http\Controllers\Api\{MusicController, RhythmController, SingerController};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -38,4 +38,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/webscriping/singer/search', SearchSingerController::class)->name('webscriping.singer');
     Route::get('/webscriping/music/search', SearchMusicController::class)->name('webscriping.music');
+
+    Route::post('/rhythm/store', [RhythmController::class, 'store'])->name('rhythm.store');
+
 });
