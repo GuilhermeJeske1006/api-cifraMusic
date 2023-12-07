@@ -23,3 +23,22 @@ it('should list all the rhythm', function () {
     }
 
 });
+
+it('should paginate the result', function () {
+
+    // Arrange :: preparar
+    $user = User::factory()->create();
+    actingAs($user);
+    Rhythm::factory(50)->create();
+
+    // Act
+    $response = getJson(route('rhythm.index'));
+
+    // Assert
+    $response->assertSuccessful()
+        ->assertJsonStructure([
+            'data',
+            'links',
+            'meta',
+        ])->assertJsonCount(10, 'data');
+});
