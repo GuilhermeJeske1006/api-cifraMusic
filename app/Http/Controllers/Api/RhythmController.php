@@ -47,4 +47,11 @@ class RhythmController extends Controller
         ], 200);
     }
 
+    public function destroy(Rhythm $rhythm): JsonResponse
+    {
+        $rhythm->deleteOrFail();
+
+        return response()->json(['Ritmo excluido com sucesso'], 200);
+    }
+
 }
