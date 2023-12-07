@@ -3,11 +3,18 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\RhythmResource;
 use App\Models\Rhythm;
+use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Http\{JsonResponse, Request};
 
 class RhythmController extends Controller
 {
+    public function index(): JsonResource
+    {
+        return RhythmResource::collection(Rhythm::paginate(10));
+    }
+
     public function store(Rhythm $rhythm): JsonResponse
     {
         request()->validate([

@@ -40,5 +40,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/webscriping/music/search', SearchMusicController::class)->name('webscriping.music');
 
     Route::post('/rhythm/store', [RhythmController::class, 'store'])->name('rhythm.store');
+    Route::get('/rhythm', [RhythmController::class, 'index'])->name('rhythm.index');
 
 });
