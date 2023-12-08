@@ -3,6 +3,7 @@
 use App\Http\Controllers\Api\Music\HighlightController;
 use App\Http\Controllers\Api\WebScraping\{SearchMusicController, SearchSingerController, StoreMusicController};
 use App\Http\Controllers\Api\{MusicController, RhythmController, SingerController};
+use App\Http\Controllers\Pdf\Api\{DownloadHandoutController, DownloadPdfController};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -45,3 +46,7 @@ Route::middleware('auth')->group(function () {
 Route::get('/webscriping/singer/search', SearchSingerController::class)->name('webscriping.singer');
 Route::get('/webscriping/music/search', SearchMusicController::class)->name('webscriping.music');
 Route::get('/webscriping/music/store', StoreMusicController::class)->name('webscriping.store');
+
+Route::get('/music', [MusicController::class, 'index'])->name('music.index');
+
+Route::get('/pdf/download/', DownloadHandoutController::class);
