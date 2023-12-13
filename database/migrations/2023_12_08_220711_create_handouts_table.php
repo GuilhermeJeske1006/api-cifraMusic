@@ -15,13 +15,7 @@ return new class () extends Migration {
             $table->string('cover_image')->nullable();
             $table->string('title')->nullable();
             $table->text('subtitle')->nullable();
-            $table->timestamps();
-        });
-
-        Schema::create('handout_music', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('handout_id')->constrained();
-            $table->foreignId('music_id')->constrained();
+            $table->string('handout_download')->nullable();
             $table->timestamps();
         });
 
