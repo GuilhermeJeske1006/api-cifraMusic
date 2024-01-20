@@ -22,7 +22,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return redirect(env('FRONT_URL'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/facebook/login', RedirectController::class)->name('facebook.login');
