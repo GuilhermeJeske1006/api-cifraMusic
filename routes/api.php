@@ -45,3 +45,5 @@ Route::middleware('auth')->group(function () {
 Route::get('/webscriping/singer/search', SearchSingerController::class)->name('webscriping.singer');
 Route::get('/webscriping/music/search', SearchMusicController::class)->name('webscriping.music');
 Route::get('/webscriping/music/store', StoreMusicController::class)->name('webscriping.store');
+
+Route::post('/login', \App\Http\Controllers\Auth\LoginController::class)->name('login');
