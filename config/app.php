@@ -163,6 +163,7 @@ return [
         /*
          * Application Service Providers...
          */
+        Elibyy\TCPDF\ServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
@@ -182,6 +183,7 @@ return [
     */
 
     'aliases' => Facade::defaultAliases()->merge([
+        'PDF' => Elibyy\TCPDF\Facades\TCPDF::class,
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 

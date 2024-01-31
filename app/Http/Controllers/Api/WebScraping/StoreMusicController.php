@@ -20,9 +20,13 @@ class StoreMusicController extends Controller
             $name_singer = $this->sanitizeString(request()->name_singer);
             $name_music  = $this->sanitizeString(request()->name_music);
 
-            $crawler = $client->request('GET', env('WEB_SCRIPING_URL') . '/' . $name_singer . '/' . $name_music);
+            $crawler = $client->request('GET', env('WEB_SCRIPING_URL') . '/' . $name_singer . '/' . $name_music . '/simplificada.html');
 
-            $song   = $crawler->filter('.cifra-column--left')->html();
+            $song_raw = $crawler->filter('.cifra-column--left')->html();
+
+            // Remove content inside the 'tablatura' class
+            $song = $this->removeTablatura($song_raw);
+
             $title  = $crawler->filter('.t1')->text();
             $singer = $crawler->filter('.t3')->text();
             $note   = $this->sanitizeNote($crawler->filter('#cifra_tom')->text());
@@ -48,6 +52,16 @@ class StoreMusicController extends Controller
         } catch (\Throwable $th) {
             return response()->json($th);
         }
+    }
+
+    // Restante do código permanece inalterado
+
+    private function removeTablatura(string $content): string
+    {
+        // Utilize a expressão regular para remover a classe "tablatura" e seu conteúdo
+        $pattern = '/<span class="tablatura"><span class="cnt">(.*?)<\/span><\/span>/s';
+
+        return preg_replace($pattern, '', $content);
     }
 
     private function sanitizeString(string $input): string

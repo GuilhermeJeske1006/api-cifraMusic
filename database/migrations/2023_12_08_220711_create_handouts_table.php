@@ -10,14 +10,15 @@ return new class () extends Migration {
      */
     public function up(): void
     {
-        Schema::create('rhythm_has_music', function (Blueprint $table) {
+        Schema::create('handouts', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('music_id');
-            $table->foreign('music_id')->references('id')->on('music')->onDelete("cascade");
-            $table->unsignedBigInteger('rhythm_id');
-            $table->foreign('rhythm_id')->references('id')->on('rhythms')->onDelete("cascade");
+            $table->string('cover_image')->nullable();
+            $table->string('title')->nullable();
+            $table->text('subtitle')->nullable();
+            $table->string('handout_download')->nullable();
             $table->timestamps();
         });
+
     }
 
     /**
@@ -25,6 +26,8 @@ return new class () extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('rhythm_has_music');
+        Schema::dropIfExists('handout_music');
+        Schema::dropIfExists('handouts');
+
     }
 };
