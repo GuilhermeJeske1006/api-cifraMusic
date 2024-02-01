@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\MusicResource;
 use App\Models\Music;
 use Illuminate\Http\Resources\Json\{JsonResource, ResourceResponse};
+use Illuminate\Http\{JsonResponse, Request};
 
 class MusicController extends Controller
 {
@@ -20,7 +21,7 @@ class MusicController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(): JsonResource
+    public function store(): JsonResponse
     {
         request()->validate([
             'title'  => 'required',
@@ -38,7 +39,10 @@ class MusicController extends Controller
                 'created_by' => request()->created_by,
             ]);
 
-        return MusicResource::make($music);
+        return response()->json([
+            'data' => MusicResource::make($music),
+            'msg'  => 'Música criado com sucesso!',
+        ], 201);
     }
     /**
      * Display the specified resource.
