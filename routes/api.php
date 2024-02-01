@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\Api\Music\HighlightController;
 use App\Http\Controllers\Api\WebScraping\{SearchMusicController, SearchSingerController, StoreMusicController};
-use App\Http\Controllers\Api\{MusicController, RhythmController, SingerController};
+use App\Http\Controllers\Api\{MusicController, NoteController, RhythmController, SingerController};
+use App\Http\Controllers\Auth\LoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -41,9 +42,10 @@ Route::middleware('auth')->group(function () {
     Route::put('/rhythm/{rhythm}/update', [RhythmController::class, 'update'])->name('rhythm.update');
     Route::delete('/rhythm/{rhythm}/destroy', [RhythmController::class, 'destroy'])->name('rhythm.destroy');
 
+    Route::get('/notes', [NoteController::class, 'index'])->name('note.index');
 });
 Route::get('/webscriping/singer/search', SearchSingerController::class)->name('webscriping.singer');
 Route::get('/webscriping/music/search', SearchMusicController::class)->name('webscriping.music');
 Route::get('/webscriping/music/store', StoreMusicController::class)->name('webscriping.store');
 
-Route::post('/login', \App\Http\Controllers\Auth\LoginController::class)->name('login');
+Route::post('/login', LoginController::class)->name('login');
