@@ -14,6 +14,13 @@ class RhythmResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
-        return parent::toArray($request);
+
+        return [
+            'id'          => $this->resource->id,
+            'name_rhythm' => $this->resource->name_rhythm,
+            'created_at'  => $this->resource->created_at->format('d/m/y'),
+            'updated_at'  => $this->resource->updated_at->format('d-m-y'),
+            'musics'      => MusicResource::collection($this->whenLoaded('musics')),
+        ];
     }
 }

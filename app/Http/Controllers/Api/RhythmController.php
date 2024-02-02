@@ -12,7 +12,7 @@ class RhythmController extends Controller
 {
     public function index(): JsonResource
     {
-        return RhythmResource::collection(Rhythm::paginate(10));
+        return RhythmResource::collection(Rhythm::with('musics')->paginate(20));
     }
 
     public function store(Rhythm $rhythm): JsonResponse
