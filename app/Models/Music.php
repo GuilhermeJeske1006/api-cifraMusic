@@ -13,6 +13,21 @@ class Music extends Model
 
     protected $guarded = [];
 
+    /** @var string[] */
+    protected $with = ['singer', 'note', 'rhythm'];
+
+    /** @var string[] */
+    protected $filable = [
+        'id',
+        'title',
+        'lyrics',
+        'is_highlighted',
+        'created_by',
+        'singer_id',
+        'rhythm_id',
+        'note_id',
+    ];
+
     protected $casts = [
         'is_highlighted' => 'boolean',
         'created_at'     => 'datetime:d-m-y',
@@ -42,7 +57,6 @@ class Music extends Model
     {
         return $this->where('title', 'like', '%' . $search . '%')
             ->orWhere('lyrics', 'like', '%' . $search . '%')
-            ->with('singer', 'note', 'rhythm')
             ->paginate(10);
     }
 

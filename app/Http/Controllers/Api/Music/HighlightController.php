@@ -15,8 +15,8 @@ class HighlightController extends Controller
      */
     public function __invoke(): JsonResource
     {
-        return MusicResource::collection([
+        return MusicResource::collection(
             Music::where('is_highlighted', true)->get(),
-        ]);
+        );
     }
 }

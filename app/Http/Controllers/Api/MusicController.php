@@ -19,7 +19,7 @@ class MusicController extends Controller
         if(request()->has('search')) {
             $musics = (new Music())->search(request()->search);
         } else {
-            $musics = Music::with('singer', 'note', 'rhythm')->paginate(10);
+            $musics = Music::paginate(10);
         }
 
         return MusicResource::collection($musics);
