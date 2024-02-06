@@ -13,9 +13,14 @@ class SingerController extends Controller
 {
     public function index(): JsonResource
     {
+        if(request()->has('search')) {
+            $singers = (new Singer())->search(request()->search);
+        } else {
+            $singers = Singer::with('musics')->paginate(10);
+        }
+
         return SingerResource::collection(
-            Singer::with('musics')
-                ->paginate(10)
+            $singers
         );
     }
 
